@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 30px;
+}
+
+/* Carte de prix */
+.pricing {
+    width: 300px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ccc;
+    padding: 20px;
+    text-align: left;
+    border-radius: 8px;
+}
+
+/* Titre */
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Prix */
+.price {
+    font-size: 18px;
+    color: green;
+    margin-bottom: 15px;
+}
+
+/* Liste des fonctionnalités */
+.features {
+    list-style: none;
+    padding-left: 0;
+}
+
+.features li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Bouton */
+.btn {
+    background: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: darkblue;
+}
+</style>
+</head>
+<body>
+
+<div id="card-container"></div>
+
+<script>
+// ---------------------------
+//    Composant réutilisable
+// ---------------------------
+function Card(title, price, features) {
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "pricing";
+
+    wrapper.innerHTML = `
+        <h2 class="title">${title}</h2>
+        <p class="price">${price}</p>
+
+        <ul class="features">
+            ${features.map(f => `<li>${f}</li>`).join("")}
+        </ul>
+
+        <button class="btn">Start Trial</button>
+    `;
+
+    // Render du bouton
+    wrapper.querySelector(".btn").addEventListener("click", () => {
+        alert(`Merci d'avoir choisi : ${title}`);
+    });
+
+    return wrapper;
+}
+
+// ------------------------------------------
+//   Utilisation du composant (une seule fois)
+// ------------------------------------------
+document.getElementById("card-container").appendChild(
+    Card("Basic Plan", "$9.99 / month", [
+        "1 GB Storage",
+        "Basic Support",
+        "All Core Features"
+    ])
+);
+
+</script>
+
+</body>
+</html>
